@@ -1,0 +1,59 @@
+.main-header {
+  background-color: #0000002a; 
+  width: 100%;
+  padding: 20px 0px; 
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 100%; 
+  margin: 0 auto; 
+  padding: 0 50px; 
+  display: flex; 
+  justify-content: space-between;
+  align-items: center; 
+}
+
+/* Стил за логото */
+.logo {
+  color: #FFFFFF; 
+  font-size: 40px; 
+  font-weight: bold; 
+  text-decoration: none;
+  letter-spacing: 1px; 
+  font-family: 'EFour Digital', sans-serif; /* Използване на вашия шрифт */
+  display: flex; 
+  align-items: center;
+}
+
+.logo span{
+    color: red;
+}
+
+/* Стил за навигацията */
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  gap: 30px; 
+}
+
+.main-nav ul li a {
+  color: #FFFFFF; 
+  font-size: 30px; 
+  font-weight: 600;
+  text-decoration: none; 
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  transition: color 0.3s ease; 
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a:focus {
+  color: rgba(255, 255, 255, 0.7); 
+}
