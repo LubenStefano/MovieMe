@@ -1,6 +1,6 @@
 import styles from "./Main.module.css";
 import PopcornVideo from "../../assets/PopcornVideo.mp4";
-import PopcornItem from "../../shared/PopcornElement/PopcornElement";
+import CinemaItem from "../../shared/CinemaItem/CinemaItem";
 
 export default function Main() {
   return (
@@ -10,55 +10,124 @@ export default function Main() {
           <source src={PopcornVideo} type="video/mp4" />
         </video>
       </div>
-      <PopcornItem
+      <CinemaItem
         id="popcorn1"
         top={23}
-        left={19}
         width={13}
+        type="popcorn"
+        left={19}
         rotate={-60}
         zIndex={1000}
       />
-      <PopcornItem
+      <CinemaItem
         id="popcorn2"
         top={62}
-        left={16}
         width={12}
-        zIndex={1001}
+        type="popcorn"
+        left={16}
         rotate={120}
+        zIndex={1001}
       />
-      <PopcornItem
+      <CinemaItem
         id="popcorn3"
         top={77}
+        type="popcorn"
         left={-6}
         width={19}
         zIndex={1001}
         rotate={-50}
       />
-      <PopcornItem
+      <CinemaItem
         id="popcorn4"
         top={0}
-        right={2}
+        type="popcorn"
         width={13}
+        right={2}
         zIndex={1002}
         rotate={-20}
       />
-      <PopcornItem id="popcorn5" top={21} right={15} width={11} zIndex={999} />
-      <PopcornItem
+      <CinemaItem
+        id="popcorn5"
+        top={21}
+        right={15}
+        width={11}
+        zIndex={999}
+        type="popcorn"
+      />
+      <CinemaItem
         id="popcorn6"
         top={35}
+        type="popcorn"
         right={1}
         width={12}
         zIndex={1002}
         rotate={20}
       />
-      <PopcornItem
+      <CinemaItem
         id="popcorn7"
         top={57}
+        type="popcorn"
         right={10}
         width={12}
         zIndex={1002}
         rotate={-20}
       />
+
+        
+      <CinemaItem
+        id="soda1"
+        top={15}
+        type="soda"
+        left={5}
+        width={18}
+        zIndex={1002}
+        rotate={25}
+      />
+    <CinemaItem
+        id="ticket1"
+        top={45}
+        left={15}
+        width={16}
+        zIndex={1000}
+        rotate={85}
+        type="ticket"
+    />
+    <CinemaItem
+        id="ticket2"
+        top={1.5}
+        left={-6}
+        width={12}
+        zIndex={1001}
+        rotate={2}
+        type="ticket"
+    />
+    <CinemaItem
+        id="ticket3"
+        top={43}
+        right={4}
+        width={14.35}
+        zIndex={1000}
+        type="ticket"
+    />
+    <CinemaItem
+        id="ticket4"
+        top={3}
+        right={7}
+        width={16}
+        zIndex={1001}
+        rotate={-20}
+        type="ticket"
+    />
+    <CinemaItem
+        id="ticket5"
+        top={80}
+        right={-6}
+        width={14.35}
+        zIndex={1000}
+        rotate={70}
+        type="ticket"
+    />
+      
     </>
   );
 }

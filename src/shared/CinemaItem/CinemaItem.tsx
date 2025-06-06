@@ -1,7 +1,9 @@
 import React from "react";
-import PopcornImage from "../../assets/SinglePopcorn.png";
+import SinglePopcornImg from "../../assets/SinglePopcorn.png";
+import SodaImg from "../../assets/Soda.png";
+import TicketImg from "../../assets/Ticket.png";
 
-interface PopcornItemProps {
+interface CinemaItemProps {
   id: string;
   top: number;
   left?: number;
@@ -9,9 +11,10 @@ interface PopcornItemProps {
   width: number;
   rotate?: number;
   zIndex?: number;
+  type: "popcorn" | "soda" | "ticket";
 }
 
-const PopcornItem: React.FC<PopcornItemProps> = ({
+export default function CinemaItem({
   id,
   top,
   left,
@@ -19,7 +22,9 @@ const PopcornItem: React.FC<PopcornItemProps> = ({
   width,
   rotate,
   zIndex,
-}) => {
+  type
+}: CinemaItemProps ) {
+    
   const itemStyle: React.CSSProperties = {
     position: "absolute",
     top: `${top}%`,
@@ -30,15 +35,31 @@ const PopcornItem: React.FC<PopcornItemProps> = ({
     ...(rotate !== undefined && { transform: `rotate(${rotate}deg)` }),
   };
 
+  let imageSrc;
+  
+  switch (type) {
+    case "popcorn":
+        imageSrc = SinglePopcornImg;
+        break;
+    case "soda":
+        imageSrc = SodaImg;
+        break;
+    case "ticket":
+        imageSrc = TicketImg;
+        break;
+    default:
+        imageSrc = TicketImg;
+        break;
+  }
+
+
   return (
     <img
-      src={PopcornImage}
+      src={imageSrc}
       alt="popcorn"
       id={id}
       className="float-item"
       style={itemStyle}
     />
   );
-};
-
-export default PopcornItem;
+}
