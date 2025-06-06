@@ -50,10 +50,21 @@
   font-family: "Ubuntu", sans-serif;
   font-weight: 300;
   font-style: normal;
-  transition: color 0.3s ease; 
+  position: relative;
+}
+.main-nav ul li a::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  left: -5px;
+  height: 15px;
+  top: 10px;
+  background-color: rgba(0, 0, 0, 0.199);
+  transition: width 0.3s ease;
+  z-index: -1; 
+  border-radius: 7px;
 }
 
-.main-nav ul li a:hover,
-.main-nav ul li a:focus {
-  color: rgba(255, 255, 255, 0.7); 
+.main-nav ul li a:hover::before {
+  width: 110%;
 }

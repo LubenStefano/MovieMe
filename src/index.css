@@ -5,3 +5,8 @@
 body {
   overflow-x: hidden;
 }
+
+@font-face {
+  font-family: 'EFour Digital'; /* Това е името, с което ще реферирате шрифта в CSS */
+  src: url('./fonts/EFourDigital.ttf') format('truetype'); /* Пътят към вашия шрифт файл */
+}
