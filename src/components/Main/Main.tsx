@@ -1,6 +1,7 @@
 import styles from "./Main.module.css";
 import PopcornVideo from "../../assets/PopcornVideo.mp4";
 import CinemaItem from "../../shared/CinemaItem/CinemaItem";
+import { MouseParallax } from "react-just-parallax";
 
 export default function Main() {
   return (
@@ -10,6 +11,12 @@ export default function Main() {
           <source src={PopcornVideo} type="video/mp4" />
         </video>
       </div>
+
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.03}
+      lerpEase={0.06}
+    >
       <CinemaItem
         id="popcorn1"
         top={23}
@@ -19,6 +26,12 @@ export default function Main() {
         rotate={-60}
         zIndex={1000}
       />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.05}
+      lerpEase={0.09}
+    >
       <CinemaItem
         id="popcorn2"
         top={62}
@@ -28,6 +41,12 @@ export default function Main() {
         rotate={120}
         zIndex={1001}
       />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.04}
+      lerpEase={0.07}
+    >
       <CinemaItem
         id="popcorn3"
         top={77}
@@ -37,6 +56,12 @@ export default function Main() {
         zIndex={1001}
         rotate={-50}
       />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.03}
+      lerpEase={0.05}
+    >
       <CinemaItem
         id="popcorn4"
         top={0}
@@ -46,6 +71,12 @@ export default function Main() {
         zIndex={1002}
         rotate={-20}
       />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.05}
+      lerpEase={0.08}
+    >
       <CinemaItem
         id="popcorn5"
         top={21}
@@ -54,6 +85,12 @@ export default function Main() {
         zIndex={999}
         type="popcorn"
       />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.02}
+      lerpEase={0.04}
+    >
       <CinemaItem
         id="popcorn6"
         top={35}
@@ -63,17 +100,28 @@ export default function Main() {
         zIndex={1002}
         rotate={20}
       />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.069}
+      lerpEase={0.15}
+    >
       <CinemaItem
         id="popcorn7"
         top={57}
         type="popcorn"
-        right={10}
+        right={12}
         width={12}
         zIndex={1002}
         rotate={-20}
       />
+    </MouseParallax>
 
-        
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.07}
+      lerpEase={0.11}
+    >
       <CinemaItem
         id="soda1"
         top={15}
@@ -83,7 +131,13 @@ export default function Main() {
         zIndex={1002}
         rotate={25}
       />
-    <CinemaItem
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.03}
+      lerpEase={0.07}
+    >
+      <CinemaItem
         id="ticket1"
         top={45}
         left={15}
@@ -91,8 +145,14 @@ export default function Main() {
         zIndex={1000}
         rotate={85}
         type="ticket"
-    />
-    <CinemaItem
+      />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.05}
+      lerpEase={0.09}
+    >
+      <CinemaItem
         id="ticket2"
         top={1.5}
         left={-6}
@@ -100,16 +160,28 @@ export default function Main() {
         zIndex={1001}
         rotate={2}
         type="ticket"
-    />
-    <CinemaItem
+      />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.06}
+      lerpEase={0.1}
+    >
+      <CinemaItem
         id="ticket3"
         top={43}
         right={4}
         width={14.35}
         zIndex={1000}
         type="ticket"
-    />
-    <CinemaItem
+      />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.04}
+      lerpEase={0.08}
+    >
+      <CinemaItem
         id="ticket4"
         top={3}
         right={7}
@@ -117,8 +189,14 @@ export default function Main() {
         zIndex={1001}
         rotate={-20}
         type="ticket"
-    />
-    <CinemaItem
+      />
+    </MouseParallax>
+    <MouseParallax
+      isAbsolutelyPositioned={true}
+      strength={0.06}
+      lerpEase={0.1}
+    >
+      <CinemaItem
         id="ticket5"
         top={80}
         right={-6}
@@ -126,8 +204,8 @@ export default function Main() {
         zIndex={1000}
         rotate={70}
         type="ticket"
-    />
-      
+      />
+    </MouseParallax>
     </>
   );
 }
