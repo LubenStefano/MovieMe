@@ -19,12 +19,12 @@
 
 /* Стил за логото */
 .logo {
-  color: #FFFFFF; 
+  color: white; 
   font-size: 40px; 
   font-weight: bold; 
   text-decoration: none;
   letter-spacing: 1px; 
-  font-family: 'EFour Digital', sans-serif; /* Използване на вашия шрифт */
+  font-family: 'EFour Digital', sans-serif; 
   display: flex; 
   align-items: center;
 }
@@ -39,32 +39,51 @@
   margin: 0;
   padding: 0;
   display: flex; 
-  gap: 30px; 
+  gap: 20px; 
 }
 
-.main-nav ul li a {
-  color: #FFFFFF; 
-  font-size: 30px; 
-  font-weight: 600;
-  text-decoration: none; 
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+.main-nav ul li {
   position: relative;
+  padding: 0; 
+  border-radius: 5px;
 }
-.main-nav ul li a::before {
-  content: '';
-  position: absolute;
-  width: 0;
-  left: -5px;
-  height: 15px;
-  top: 10px;
-  background-color: rgba(0, 0, 0, 0.199);
-  transition: width 0.3s ease;
-  z-index: -1; 
-  border-radius: 7px;
+.main-nav ul li a {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 300;
+  text-decoration: none;
+  font-family: "Ubuntu", sans-serif;
+  font-style: normal;
+  display: inline-block;
+  transition: color 0.55s;
+  position: relative;
+  z-index: 1;
 }
 
-.main-nav ul li a:hover::before {
-  width: 110%;
+.main-nav ul li {
+  width: 125px;
+  height: 50px;
+  transition: background-position-x 1s linear;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.main-nav ul li:hover {
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEi%0D%0AIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhs%0D%0AaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0%0D%0AaD0iMzkwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDM5MCA1MCIgZW5hYmxlLWJhY2tn%0D%0Acm91bmQ9Im5ldyAwIDAgMzkwIDUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0i%0D%0Abm9uZSIgc3Ryb2tlPSIjZDk0ZjVjIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW1pdGVybGlt%0D%0AaXQ9IjEwIiBkPSJNMCw0Ny41ODVjMCwwLDk3LjUsMCwxMzAsMAoJYzEzLjc1LDAsMjguNzQtMzgu%0D%0ANzc4LDQ2LjE2OC0xOS40MTZDMTkyLjY2OSw0Ni41LDI0My42MDMsNDcuNTg1LDI2MCw0Ny41ODVj%0D%0AMzEuODIxLDAsMTMwLDAsMTMwLDAiLz4KPC9zdmc+Cg==");
+  animation: line 1.2s;
+}
+
+.main-nav ul li:hover a {
+  color: #d94f5c;
+}
+
+@keyframes line {
+  0% {
+    background-position-x: 390px;
+  }
 }
