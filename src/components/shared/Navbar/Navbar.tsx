@@ -1,22 +1,23 @@
 import styles from './Navbar.module.css';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
     return (
         <header className={styles["main-header"]}>
             <div className={styles["header-container"]}>
-                <a href="#" className={styles.logo}>
+                <Link to="/" className={styles.logo}>
                     movie<span>me</span>
-                </a>
+                </Link>
                 <nav className={styles["main-nav"]}>
                     <ul>
                         <li>
-                            <a href="#">MOVIES</a>
+                            <Link to="/movies">MOVIES</Link>
                         </li>
                         <li>
-                            <a href="#">SHOWS</a>
+                            <Link to="/shows">SHOWS</Link>
                         </li>
                         <li>
-                            <a href="#">ABOUT</a>
+                            <Link to="/about">ABOUT</Link>
                         </li>
                     </ul>
                 </nav>

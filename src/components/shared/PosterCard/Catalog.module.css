@@ -1,0 +1,123 @@
+.container{
+    display: flex;
+    flex-wrap: wrap; /* Allows multiple cards to wrap to the next line */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Centers the cards in the container */
+    padding: 20px; /* Padding around the container */
+}
+
+.poster-card {
+    position: relative; /* Allows absolute positioning of children relative to this card */
+    width: 300px; /* Adjust as needed for your layout */
+    height: 450px; /* Adjust as needed, maintaining aspect ratio or specific size */
+    overflow: hidden; /* Crucial to hide the info-overlay when it's outside the bounds */
+    border-radius: 8px; /* Slightly rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    cursor: pointer; /* Indicates it's interactive */
+    background-color: #000; /* Fallback/background for image loading */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+.poster-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* More pronounced shadow on hover */
+}
+
+.poster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    display: block; /* Removes extra space below image */
+    transition: transform 0.3s ease; /* Smooth zoom effect on hover */
+}
+
+.poster-card:hover .poster-image {
+    transform: scale(1.05); /* Slightly zooms in the image on hover */
+}
+
+.info-overlay {
+    position: absolute;
+    bottom: 0; /* Aligns the overlay to the bottom of the card */
+    left: 0;
+    width: 100%;
+    height: 100%; /* Initially covers the entire card */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 70%, rgba(0, 0, 0, 0) 100%); /* Gradient for visibility */
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Pushes content to the bottom */
+    transform: translateY(100%); /* Initially hides the overlay by pushing it down by 100% of its height */
+    transition: transform 0.4s ease-out; /* Smooth transition for the slide-up effect */
+    opacity: 0; /* Start with opacity 0 to prevent text from being visible before sliding */
+    pointer-events: none; /* Allows clicks to pass through when hidden */
+}
+
+.poster-card:hover .info-overlay {
+    transform: translateY(0); /* Slides the overlay up to its original position */
+    opacity: 1; /* Makes the overlay fully visible */
+    pointer-events: auto; /* Enables clicks on the overlay content */
+}
+
+/* Styling for content inside the overlay */
+.movie-title {
+    font-size: 2em; /* Larger title */
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Subtle text shadow for readability */
+}
+
+.movie-year {
+    font-size: 1.1em;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.movie-description {
+    font-size: 0.9em;
+    color: #e0e0e0;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    /* Limit description to a few lines if necessary */
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Show up to 4 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rating {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffd700; /* Gold for stars */
+    margin-top: auto; /* Pushes the rating to the bottom, above the button */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.star-icon {
+    font-size: 1.5em; /* Larger star icon */
+    color: #ffd700;
+}
+
+.see-more-btn {
+    display: inline-block;
+    background-color: #e50914; /* Netflix red, or similar */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Space above the button */
+    align-self: flex-start; /* Aligns button to the left if flex container */
+    letter-spacing: 1px;
+}
+
+.see-more-btn:hover {
+    background-color: #ff0000;
+}

@@ -1,18 +1,9 @@
 import React from "react";
-import SinglePopcornImg from "../../assets/SinglePopcorn.png";
-import SodaImg from "../../assets/Soda.png";
-import TicketImg from "../../assets/Ticket.png";
+import SinglePopcornImg from "./../../../assets/SinglePopcorn.png";
+import SodaImg from "./../../../assets/Soda.png";
+import TicketImg from "./../../../assets/Ticket.png";
+import type { CinemaItemProps } from "../../../types/index.ts";
 
-interface CinemaItemProps {
-  id: string;
-  top: number;
-  left?: number;
-  right?: number;
-  width: number;
-  rotate?: number;
-  zIndex?: number;
-  type: "popcorn" | "soda" | "ticket";
-}
 
 export default function CinemaItem({
   id,
