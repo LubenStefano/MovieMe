@@ -67,7 +67,6 @@ const PageController: React.FC<PageControllerProps> = ({
           Next
         </button>
       </div>
-      <div className={styles["totalPages"]}>Total pages: {totalPages}</div>
     </div>
   );
 };

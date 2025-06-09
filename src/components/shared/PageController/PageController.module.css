@@ -34,12 +34,6 @@
     transform: none;
 }
 
-.totalPages {
-    font-size: 15px;
-    color: #333333c7;
-    margin: 10px 0;
-}
-
 .pageButton{
     background: #c70710;
     color: #fff;
