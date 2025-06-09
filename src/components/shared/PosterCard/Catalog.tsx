@@ -2,17 +2,11 @@ import styles from './Catalog.module.css';
 import PageController from '../PageController/PageController';
 import React, { useState, useEffect } from 'react';
 import { fetchPopularMovies } from '../../../utils/requester.ts';
+import type { Movie } from '../../../types/index.ts';
 
 export default function Catalog() {
   const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(1);
-  type Movie = {
-    src: string;
-    title: string;
-    year: string | number;
-    description: string;
-    rating: number;
-  };
   const [movies, setMovies] = useState<Movie[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -37,6 +31,13 @@ export default function Catalog() {
 
   return (
     <>
+    {totalPages > 1 && (
+          <PageController
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+      )}
       <div className={styles["container"]}>
         {movies.map(({ src, title, year, description, rating }, idx) => (
           <div
@@ -66,13 +67,11 @@ export default function Catalog() {
         ))}
       </div>
       {totalPages > 1 && (
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
           <PageController
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={setCurrentPage}
           />
-        </div>
       )}
     </>
   );

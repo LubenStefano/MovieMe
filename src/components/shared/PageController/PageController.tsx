@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import styles from "./PageController.module.css";
 
 interface PageControllerProps {
   currentPage: number;
@@ -6,7 +7,11 @@ interface PageControllerProps {
   onPageChange: (page: number) => void;
 }
 
-const PageController: React.FC<PageControllerProps> = ({ currentPage, totalPages, onPageChange }) => {
+const PageController: React.FC<PageControllerProps> = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
   const handlePrev = () => {
     if (currentPage > 1) onPageChange(currentPage - 1);
   };
@@ -32,27 +37,37 @@ const PageController: React.FC<PageControllerProps> = ({ currentPage, totalPages
   }
 
   return (
-    <div className="flex gap-2 justify-center items-center mt-4" style={{ flexDirection: 'column' }}>
+    <div className={styles["controllerContainer"]}>
       <div>
-        <button onClick={handlePrev} disabled={currentPage === 1}>
+        <button
+          onClick={handlePrev}
+          disabled={currentPage === 1}
+          className={styles["controllerButton"]}
+        >
           Prev
         </button>
         {pageNumbers.map((page) => (
           <button
             key={page}
             onClick={() => onPageChange(page)}
-            className={currentPage === page ? 'font-bold underline' : ''}
+            className={
+              page === currentPage
+                ? `${styles["pageButton"]} ${styles["activePageButton"]}`
+                : styles["pageButton"]
+            }
           >
             {page}
           </button>
         ))}
-        <button onClick={handleNext} disabled={currentPage === totalPages}>
+        <button
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+          className={styles["controllerButton"]}
+        >
           Next
         </button>
       </div>
-      <div style={{ marginTop: 8, fontSize: '0.95em', color: '#888' }}>
-        Total pages: {totalPages}
-      </div>
+      <div className={styles["totalPages"]}>Total pages: {totalPages}</div>
     </div>
   );
 };
