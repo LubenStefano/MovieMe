@@ -3,14 +3,23 @@ import { useState, useEffect } from "react";
 import Catalog from '../../shared/PosterCard/Catalog.tsx';
 import { fetchPopularShows } from '../../../utils/requester.ts';
 import type { Show } from "../../../types/index.ts";
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function ShowsCatalog() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const query = new URLSearchParams(location.search);
+    const queryPage = Number(query.get("page")) || 1;
+    const scrollToId = query.get("scrollToId");
+    const [currentPage, setCurrentPage] = useState(queryPage);
     const [shows, setShows] = useState<Show[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+
+    useEffect(() => {
+        setCurrentPage(queryPage);
+    }, [queryPage]);
 
     useEffect(() => {
         setLoading(true);
@@ -22,7 +31,22 @@ export default function ShowsCatalog() {
             })
             .catch((err) => setError(err.message || "Error fetching shows"))
             .finally(() => setLoading(false));
+        // Update the URL with the current page
+        if (currentPage !== queryPage) {
+            navigate(`?page=${currentPage}`, { replace: true });
+        }
     }, [currentPage]);
+
+    useEffect(() => {
+        if (scrollToId) {
+            const el = document.getElementById(`show-card-${scrollToId}`);
+            if (el) {
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: "smooth", block: "center" });
+                }, 100);
+            }
+        }
+    }, [scrollToId, shows]);
 
     const refetch = () => {
         setCurrentPage(1);
@@ -76,6 +100,7 @@ export default function ShowsCatalog() {
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={setCurrentPage}
+                type="show"
             />
         </main>
     );

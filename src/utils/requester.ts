@@ -137,3 +137,43 @@ export const fetchMovieTrailerKey = async (id: number): Promise<string | null> =
     return null;
   }
 };
+
+export const fetchShowTrailerKey = async (id: number): Promise<string | null> => {
+  try {
+    const response = await fetch(
+      `${TMDB_BASE_URL}/tv/${id}/videos?api_key=${TMDB_API_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch show trailer: ${response.statusText}`);
+    }
+    const data = await response.json();
+    // Try to find a YouTube "Trailer" first
+    let trailer = data.results?.find(
+      (vid: any) =>
+        vid.site === "YouTube" &&
+        vid.type === "Trailer" &&
+        vid.key
+    );
+    // If not found, try "Teaser"
+    if (!trailer) {
+      trailer = data.results?.find(
+        (vid: any) =>
+          vid.site === "YouTube" &&
+          vid.type === "Teaser" &&
+          vid.key
+      );
+    }
+    // If still not found, use any YouTube video
+    if (!trailer) {
+      trailer = data.results?.find(
+        (vid: any) =>
+          vid.site === "YouTube" &&
+          vid.key
+      );
+    }
+    return trailer ? trailer.key : null;
+  } catch (error) {
+    console.error("Error fetching show trailer:", error);
+    return null;
+  }
+};

@@ -17,9 +17,10 @@ interface CatalogProps {
   currentPage?: number;
   totalPages?: number;
   onPageChange?: (page: number) => void;
+  type: "movie" | "show";
 }
 
-export default function Catalog({ items, currentPage, totalPages, onPageChange }: CatalogProps) {
+export default function Catalog({ items, currentPage, totalPages, onPageChange, type }: CatalogProps) {
   return (
     <>
       {totalPages && totalPages > 1 && onPageChange && currentPage && (
@@ -30,7 +31,7 @@ export default function Catalog({ items, currentPage, totalPages, onPageChange }
         />
       )}
       <div className={styles["container"]}>
-        {items.map(({ src, title, year, description, rating, id}, idx) => (
+        {items.map(({ src, title, year, description, rating, id }, idx) => (
           <div
             className={styles["poster-card"]}
             key={idx}
@@ -52,7 +53,12 @@ export default function Catalog({ items, currentPage, totalPages, onPageChange }
               <div className={styles["rating"]}>
                 <span className={styles["star-icon"]}>★</span> {rating} / 10
               </div>
-              <Link to={`/details/${id}`} className={styles["see-more-btn"]}>SEE MORE </Link>
+              <Link
+                to={`/details/${type}/${id}?page=${currentPage ?? 1}&scrollToId=${id}`}
+                className={styles["see-more-btn"]}
+              >
+                SEE MORE
+              </Link>
             </div>
           </div>
         ))}

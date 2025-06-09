@@ -1,15 +1,25 @@
 import styles from "./MovieCatalog.module.css";
 import { useState, useEffect } from "react";
-import { fetchPopularMovies } from '../../../utils/requester.ts';
 import Catalog from '../../shared/PosterCard/Catalog.tsx';
+import { fetchPopularMovies } from '../../../utils/requester.ts';
 import type { Movie } from "../../../types/index.ts";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function MovieCatalog() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const query = new URLSearchParams(location.search);
+    const queryPage = Number(query.get("page")) || 1;
+    const scrollToId = query.get("scrollToId");
+    const [currentPage, setCurrentPage] = useState(queryPage);
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+
+    useEffect(() => {
+        setCurrentPage(queryPage);
+    }, [queryPage]);
 
     useEffect(() => {
         setLoading(true);
@@ -21,7 +31,22 @@ export default function MovieCatalog() {
             })
             .catch((err) => setError(err.message || "Error fetching movies"))
             .finally(() => setLoading(false));
+        // Update the URL with the current page
+        if (currentPage !== queryPage) {
+            navigate(`?page=${currentPage}`, { replace: true });
+        }
     }, [currentPage]);
+
+    useEffect(() => {
+        if (scrollToId) {
+            const el = document.getElementById(`movie-card-${scrollToId}`);
+            if (el) {
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: "smooth", block: "center" });
+                }, 100);
+            }
+        }
+    }, [scrollToId, movies]);
 
     const refetch = () => {
         setCurrentPage(1);
@@ -75,6 +100,7 @@ export default function MovieCatalog() {
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={setCurrentPage}
+                type="movie"
             />
         </main>
     );
