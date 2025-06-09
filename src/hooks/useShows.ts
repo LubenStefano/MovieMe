@@ -13,7 +13,7 @@ export const useShows = (showCount: number = 20): UseShowsResult => {
         setError(null); // Clear any previous errors
 
         try {
-            const fetchedShows = await fetchPopularShows(showCount);
+            const { shows: fetchedShows } = await fetchPopularShows(showCount);
             setShows(fetchedShows);
         } catch (err: any) {
             console.error("Failed to fetch shows:", err);

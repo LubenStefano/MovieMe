@@ -1,17 +1,45 @@
 import styles from "./MovieCatalog.module.css";
-import { useMovies } from '../../../hooks/useMovies.ts'; // Adjust path as needed
+import { useState, useEffect } from "react";
+import { fetchPopularMovies } from '../../../utils/requester.ts';
 import Catalog from '../../shared/PosterCard/Catalog.tsx';
+import type { Movie } from "../../../types/index.ts";
 
 export default function MovieCatalog() {
-    // Use the hook to fetch a certain number of movies.
-    // For example, fetching 20 popular movies and 0 shows (since this is for movies)
-    const { movies, loading, error, refetch } = useMovies(20);
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
+    useEffect(() => {
+        setLoading(true);
+        setError(null);
+        fetchPopularMovies(20, currentPage)
+            .then(({ movies, totalPages }) => {
+                setMovies(movies);
+                setTotalPages(totalPages);
+            })
+            .catch((err) => setError(err.message || "Error fetching movies"))
+            .finally(() => setLoading(false));
+    }, [currentPage]);
+
+    const refetch = () => {
+        setCurrentPage(1);
+        setLoading(true);
+        setError(null);
+        fetchPopularMovies(20, 1)
+            .then(({ movies, totalPages }) => {
+                setMovies(movies);
+                setTotalPages(totalPages);
+            })
+            .catch((err) => setError(err.message || "Error fetching movies"))
+            .finally(() => setLoading(false));
+    };
 
     if (loading) {
         return (
             <main className={styles["main-content"]}>
                 <p className={styles.loadingMessage}>Зареждане на филми...</p>
-                {/* You can add a more complex loading spinner here if desired */}
             </main>
         );
     }
@@ -42,7 +70,12 @@ export default function MovieCatalog() {
 
     return (
         <main className={styles["main-content"]}>
-        <Catalog />
+            <Catalog
+                items={movies}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+            />
         </main>
     );
 }

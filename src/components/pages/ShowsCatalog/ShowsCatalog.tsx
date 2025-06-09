@@ -1,9 +1,41 @@
 import styles from "./ShowsCatalog.module.css";
-import { useShows } from '../../../hooks/useShows.ts';
+import { useState, useEffect } from "react";
 import Catalog from '../../shared/PosterCard/Catalog.tsx';
+import { fetchPopularShows } from '../../../utils/requester.ts';
+import type { Show } from "../../../types/index.ts";
+
 
 export default function ShowsCatalog() {
-    const { shows, loading, error, refetch } = useShows(20);
+    const [shows, setShows] = useState<Show[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
+    useEffect(() => {
+        setLoading(true);
+        setError(null);
+        fetchPopularShows(20, currentPage)
+            .then(({ shows, totalPages }) => {
+                setShows(shows);
+                setTotalPages(totalPages);
+            })
+            .catch((err) => setError(err.message || "Error fetching shows"))
+            .finally(() => setLoading(false));
+    }, [currentPage]);
+
+    const refetch = () => {
+        setCurrentPage(1);
+        setLoading(true);
+        setError(null);
+        fetchPopularShows(20, 1)
+            .then(({ shows, totalPages }) => {
+                setShows(shows);
+                setTotalPages(totalPages);
+            })
+            .catch((err) => setError(err.message || "Error fetching shows"))
+            .finally(() => setLoading(false));
+    };
 
     if (loading) {
         return (
@@ -39,7 +71,12 @@ export default function ShowsCatalog() {
 
     return (
         <main className={styles["main-content"]}>
-            <Catalog />
+            <Catalog
+                items={shows}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+            />
         </main>
     );
 }

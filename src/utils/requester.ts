@@ -53,41 +53,29 @@ export const fetchPopularMovies = async (count: number = 20, page: number = 1): 
   }
 };
 
-export const fetchPopularShows = async (count: number = 20): Promise<Show[]> => {
+export const fetchPopularShows = async (count: number = 20, page: number = 1): Promise<{ shows: Show[], totalPages: number }> => {
   let shows: Show[] = [];
-  let page = 1;
-
   try {
-    while (shows.length < count) {
-      const response = await fetch(
-        `${TMDB_BASE_URL}/tv/popular?api_key=${TMDB_API_KEY}&page=${page}`
-      );
+    const response = await fetch(
+      `${TMDB_BASE_URL}/tv/popular?api_key=${TMDB_API_KEY}&page=${page}`
+    );
 
-      if (!response.ok) {
-        if (response.status === 401) {
-            console.error('TMDB API Error: Invalid API key or permissions.');
-            throw new Error('Authentication failed. Check your TMDB API key.');
-        }
-        throw new Error(`Failed to fetch popular shows: ${response.statusText}`);
+    if (!response.ok) {
+      if (response.status === 401) {
+        console.error('TMDB API Error: Invalid API key or permissions.');
+        throw new Error('Authentication failed. Check your TMDB API key.');
       }
-
-      const data: TmdbApiResponse<TmdbShowResult> = await response.json();
-
-      if (!data.results || data.results.length === 0) {
-        break;
-      }
-
-      const transformedShows = data.results.map(transformTmdbShow);
-      shows = shows.concat(transformedShows);
-
-      if (page >= data.total_pages) {
-        break;
-      }
-      page++;
+      throw new Error(`Failed to fetch popular shows: ${response.statusText}`);
     }
 
-    return shows.slice(0, count);
+    const data: TmdbApiResponse<TmdbShowResult> = await response.json();
 
+    if (!data.results || data.results.length === 0) {
+      return { shows: [], totalPages: 0 };
+    }
+
+    shows = data.results.map(transformTmdbShow);
+    return { shows: shows.slice(0, count), totalPages: data.total_pages };
   } catch (error) {
     console.error("Error fetching popular shows:", error);
     throw error;

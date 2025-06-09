@@ -1,45 +1,34 @@
-import styles from './Catalog.module.css';
 import PageController from '../PageController/PageController';
-import React, { useState, useEffect } from 'react';
-import { fetchPopularMovies } from '../../../utils/requester.ts';
-import type { Movie } from '../../../types/index.ts';
+import styles from './Catalog.module.css';
+import React from 'react';
 
-export default function Catalog() {
-  const itemsPerPage = 20;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+interface CatalogItem {
+  src: string;
+  title: string;
+  year: string;
+  description: string;
+  rating: number;
+}
 
-  useEffect(() => {
-    setLoading(true);
-    setError(null);
-    fetchPopularMovies(itemsPerPage, currentPage)
-      .then(({ movies, totalPages }) => {
-        setMovies(movies);
-        setTotalPages(totalPages);
-      })
-      .catch((err) => {
-        setError(err.message || 'Error fetching movies');
-      })
-      .finally(() => setLoading(false));
-  }, [currentPage]);
+interface CatalogProps {
+  items: CatalogItem[];
+  currentPage?: number;
+  totalPages?: number;
+  onPageChange?: (page: number) => void;
+}
 
-  if (loading) return <div className={styles.container}>Loading...</div>;
-  if (error) return <div className={styles.container}>Error: {error}</div>;
-
+export default function Catalog({ items, currentPage, totalPages, onPageChange }: CatalogProps) {
   return (
     <>
-    {totalPages > 1 && (
-          <PageController
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
+      {totalPages && totalPages > 1 && onPageChange && currentPage && (
+        <PageController
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+        />
       )}
       <div className={styles["container"]}>
-        {movies.map(({ src, title, year, description, rating }, idx) => (
+        {items.map(({ src, title, year, description, rating }, idx) => (
           <div
             className={styles["poster-card"]}
             key={idx}
@@ -66,12 +55,12 @@ export default function Catalog() {
           </div>
         ))}
       </div>
-      {totalPages > 1 && (
-          <PageController
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
+      {totalPages && totalPages > 1 && onPageChange && currentPage && (
+        <PageController
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+        />
       )}
     </>
   );
