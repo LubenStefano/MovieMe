@@ -4,8 +4,6 @@ import type { Movie } from '../types/index.ts'; // Adjust path if your types are
 import { fetchPopularMovies } from '../utils/requester.ts'; // Adjust path
 import type { UseMoviesResult } from '../types/index.ts'; // Adjust path if your types are elsewhere
 
-
-
 export const useMovies = (movieCount: number = 20): UseMoviesResult => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
