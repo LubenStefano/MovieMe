@@ -1,13 +1,11 @@
 import styles from "./MovieCatalog.module.css";
-import { useMoviesAndShows } from '../../../hooks/useMoviesAndShows.ts'; // Adjust path as needed
+import { useMovies } from '../../../hooks/useMovies.ts'; // Adjust path as needed
 import Catalog from '../../shared/PosterCard/Catalog.tsx';
-// Assuming you have a PosterCard component or a way to render individual movie posters
-// import PosterCard from './PosterCard'; // Uncomment if you have a dedicated PosterCard component
 
 export default function MovieCatalog() {
     // Use the hook to fetch a certain number of movies.
     // For example, fetching 20 popular movies and 0 shows (since this is for movies)
-    const { movies, loading, error, refetch } = useMoviesAndShows(20, 0);
+    const { movies, loading, error, refetch } = useMovies(20);
 
     if (loading) {
         return (

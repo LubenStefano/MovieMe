@@ -65,3 +65,17 @@ export interface TmdbApiResponse<T> {
   total_pages: number;
   total_results: number;
 }
+
+export interface UseMoviesResult {
+  movies: Movie[];
+  loading: boolean;
+  error: string | null;
+  refetch: () => void;
+}
+
+export interface UseShowsResult {
+  shows: Show[];
+  loading: boolean;
+  error: string | null;
+  refetch: () => void;
+}
