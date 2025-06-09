@@ -6,13 +6,7 @@ export default function Main() {
   return (
     <>
       <div className={styles["hero-section"]}>
-        <video
-          autoPlay
-          muted
-          playsInline
-          loop
-          className={styles["hero-video"]}
-        >
+        <video autoPlay muted playsInline className={styles["hero-video"]}>
           <source src="/PopcornVideo.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>

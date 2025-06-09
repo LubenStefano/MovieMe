@@ -82,6 +82,16 @@
   color: #d94f5c;
 }
 
+.pages-header {
+  background-color: #00000081; 
+  width: 100%;
+  padding: 20px 0px; 
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  z-index: 1000;
+}
+
 @keyframes line {
   0% {
     background-position-x: 390px;

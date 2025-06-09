@@ -20,7 +20,7 @@ export const useMovies = (movieCount: number = 20): UseMoviesResult => {
         fetchPopularMovies(movieCount),
 
       ]);
-      setMovies(fetchedMovies);
+      setMovies(fetchedMovies.movies);
     } catch (err: any) {
       console.error("Failed to fetch movies and shows:", err);
       setError(err.message || "An unexpected error occurred while fetching data.");

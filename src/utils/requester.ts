@@ -33,44 +33,23 @@ const transformTmdbShow = (tmdbShow: TmdbShowResult): Show => ({
 
 // --- API Request Functions ---
 
-export const fetchPopularMovies = async (count: number = 20): Promise<Movie[]> => {
+export const fetchPopularMovies = async (count: number = 20, page: number = 1): Promise<{ movies: Movie[], totalPages: number }> => {
   let movies: Movie[] = [];
-  let page = 1;
-
   try {
-    while (movies.length < count) {
-      const response = await fetch(
-        `${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=${page}`
-      );
-
-      if (!response.ok) {
-        if (response.status === 401) {
-            console.error('TMDB API Error: Invalid API key or permissions.');
-            throw new Error('Authentication failed. Check your TMDB API key.');
-        }
-        throw new Error(`Failed to fetch popular movies: ${response.statusText}`);
+    const response = await fetch(
+      `${TMDB_BASE_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=${page}`
+    );
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Authentication failed. Check your TMDB API key.');
       }
-
-      const data: TmdbApiResponse<TmdbMovieResult> = await response.json();
-
-      if (!data.results || data.results.length === 0) {
-        break;
-      }
-
-      const transformedMovies = data.results.map(transformTmdbMovie);
-      movies = movies.concat(transformedMovies);
-
-      if (page >= data.total_pages) {
-        break;
-      }
-      page++;
+      throw new Error(`Failed to fetch popular movies: ${response.statusText}`);
     }
-
-    return movies.slice(0, count);
-
+    const data: TmdbApiResponse<TmdbMovieResult> = await response.json();
+    movies = data.results.map(transformTmdbMovie);
+    return { movies: movies.slice(0, count), totalPages: data.total_pages };
   } catch (error) {
-    console.error("Error fetching popular movies:", error);
-    throw error; 
+    throw error;
   }
 };
 

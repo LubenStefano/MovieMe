@@ -1,17 +1,14 @@
-import styles from "./MovieCatalog.module.css";
-import { useMovies } from '../../../hooks/useMovies.ts'; // Adjust path as needed
+import styles from "./ShowsCatalog.module.css";
+import { useShows } from '../../../hooks/useShows.ts';
 import Catalog from '../../shared/PosterCard/Catalog.tsx';
 
-export default function MovieCatalog() {
-    // Use the hook to fetch a certain number of movies.
-    // For example, fetching 20 popular movies and 0 shows (since this is for movies)
-    const { movies, loading, error, refetch } = useMovies(20);
+export default function ShowsCatalog() {
+    const { shows, loading, error, refetch } = useShows(20);
 
     if (loading) {
         return (
             <main className={styles["main-content"]}>
-                <p className={styles.loadingMessage}>Зареждане на филми...</p>
-                {/* You can add a more complex loading spinner here if desired */}
+                <p className={styles.loadingMessage}>Зареждане на сериали...</p>
             </main>
         );
     }
@@ -20,7 +17,7 @@ export default function MovieCatalog() {
         return (
             <main className={styles["main-content"]}>
                 <p className={styles.errorMessage}>
-                    Възникна грешка при зареждането на филми: {error}
+                    Възникна грешка при зареждането на сериали: {error}
                 </p>
                 <button onClick={refetch} className={styles.retryButton}>
                     Опитай отново
@@ -29,10 +26,10 @@ export default function MovieCatalog() {
         );
     }
 
-    if (movies.length === 0) {
+    if (shows.length === 0) {
         return (
             <main className={styles["main-content"]}>
-                <p className={styles.noResultsMessage}>Няма намерени филми.</p>
+                <p className={styles.noResultsMessage}>Няма намерени сериали.</p>
                 <button onClick={refetch} className={styles.retryButton}>
                     Презареди
                 </button>
@@ -42,7 +39,7 @@ export default function MovieCatalog() {
 
     return (
         <main className={styles["main-content"]}>
-        <Catalog />
+            <Catalog />
         </main>
     );
 }

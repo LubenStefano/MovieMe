@@ -1,0 +1,32 @@
+.page-controller {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.page-btn {
+  background: #181818;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.page-btn:disabled {
+  background: #333;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.page-btn.active,
+.page-btn.font-bold.underline {
+  background: #c70710;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}

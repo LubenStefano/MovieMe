@@ -1,7 +1,7 @@
 .hero-section {
   position: relative; /* Важно за позициониране на съдържанието отгоре */
   width: 100vw;
-  height: 100vh;
+  height: 105vh;
   overflow: hidden;
   background: #000; /* fallback background */
   z-index: 0; /* Lower than CinemaItems */
@@ -12,7 +12,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 105vh;
   min-width: 100vw;
   min-height: 100vh;
   object-fit: cover;
