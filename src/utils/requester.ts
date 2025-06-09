@@ -46,6 +46,8 @@ export const fetchPopularMovies = async (count: number = 20, page: number = 1): 
       throw new Error(`Failed to fetch popular movies: ${response.statusText}`);
     }
     const data: TmdbApiResponse<TmdbMovieResult> = await response.json();
+    console.log("TMDB API Response:", data); // Debugging line
+    
     movies = data.results.map(transformTmdbMovie);
     return { movies: movies.slice(0, count), totalPages: data.total_pages };
   } catch (error) {
@@ -82,3 +84,56 @@ export const fetchPopularShows = async (count: number = 20, page: number = 1): P
   }
 };
 
+export const fetchMovieById = async (id: number): Promise<Movie> => {
+  try {
+    const response = await fetch(
+      `${TMDB_BASE_URL}/movie/${id}?api_key=${TMDB_API_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movie by ID: ${response.statusText}`);
+    }
+    const tmdbMovie: TmdbMovieResult = await response.json();
+    return transformTmdbMovie(tmdbMovie);
+  } catch (error) {
+    console.error("Error fetching movie by ID:", error);
+    throw error;
+  }
+};
+
+export const fetchShowById = async (id: number): Promise<Show> => {
+  try {
+    const response = await fetch(
+      `${TMDB_BASE_URL}/tv/${id}?api_key=${TMDB_API_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch show by ID: ${response.statusText}`);
+    }
+    const tmdbShow: TmdbShowResult = await response.json();
+    return transformTmdbShow(tmdbShow);
+  } catch (error) {
+    console.error("Error fetching show by ID:", error);
+    throw error;
+  }
+};
+
+export const fetchMovieTrailerKey = async (id: number): Promise<string | null> => {
+  try {
+    const response = await fetch(
+      `${TMDB_BASE_URL}/movie/${id}/videos?api_key=${TMDB_API_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movie trailer: ${response.statusText}`);
+    }
+    const data = await response.json();
+    const trailer = data.results?.find(
+      (vid: any) =>
+        vid.site === "YouTube" &&
+        vid.type === "Trailer" &&
+        vid.key
+    );
+    return trailer ? trailer.key : null;
+  } catch (error) {
+    console.error("Error fetching movie trailer:", error);
+    return null;
+  }
+};

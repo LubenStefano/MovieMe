@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import PageController from '../PageController/PageController';
 import styles from './Catalog.module.css';
 import React from 'react';
@@ -8,6 +9,7 @@ interface CatalogItem {
   year: string;
   description: string;
   rating: number;
+  id: number;
 }
 
 interface CatalogProps {
@@ -28,7 +30,7 @@ export default function Catalog({ items, currentPage, totalPages, onPageChange }
         />
       )}
       <div className={styles["container"]}>
-        {items.map(({ src, title, year, description, rating }, idx) => (
+        {items.map(({ src, title, year, description, rating, id}, idx) => (
           <div
             className={styles["poster-card"]}
             key={idx}
@@ -50,7 +52,7 @@ export default function Catalog({ items, currentPage, totalPages, onPageChange }
               <div className={styles["rating"]}>
                 <span className={styles["star-icon"]}>★</span> {rating} / 10
               </div>
-              <a href="#" className={styles["see-more-btn"]}>SEE MORE</a>
+              <Link to={`/details/${id}`} className={styles["see-more-btn"]}>SEE MORE </Link>
             </div>
           </div>
         ))}
