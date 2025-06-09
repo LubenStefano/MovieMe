@@ -1,5 +1,5 @@
 import styles from "./MoviesCatalog.module.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Catalog from "../../shared/PosterCard/Catalog";
 import { fetchPopularMovies } from "../../../utils/requester";
 import type { Movie } from "../../../types";
