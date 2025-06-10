@@ -177,3 +177,35 @@ export const fetchShowTrailerKey = async (id: number): Promise<string | null> =>
     return null;
   }
 };
+
+export const searchMovies = async (query: string): Promise<Movie[]> => {
+  try {
+    const response = await fetch(
+      `${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to search movies: ${response.statusText}`);
+    }
+    const data: TmdbApiResponse<TmdbMovieResult> = await response.json();
+    return data.results.map(transformTmdbMovie);
+  } catch (error) {
+    console.error("Error searching movies:", error);
+    return [];
+  }
+};
+
+export const searchShows = async (query: string): Promise<Show[]> => {
+  try {
+    const response = await fetch(
+      `${TMDB_BASE_URL}/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to search shows: ${response.statusText}`);
+    }
+    const data: TmdbApiResponse<TmdbShowResult> = await response.json();
+    return data.results.map(transformTmdbShow);
+  } catch (error) {
+    console.error("Error searching shows:", error);
+    return [];
+  }
+};

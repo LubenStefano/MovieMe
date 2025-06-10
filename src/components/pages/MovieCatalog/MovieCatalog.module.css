@@ -5,3 +5,28 @@
     padding: 20px;
     margin-top: 80px;
 }
+
+.searchInput {
+  width: 430px;
+  padding: 10px 14px;
+  font-size: 1.1rem;
+  border: 2px solid #c70710;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  outline: none;
+  box-sizing: border-box;
+  background: #fff;
+  transition: border 0.18s, box-shadow 0.18s, background 0.18s;
+  box-shadow: 0 2px 8px rgba(199,7,16,0.04);
+}
+.searchInput:focus {
+  border: 2.5px solid #ff0000;
+  box-shadow: 0 4px 16px rgba(199,7,16,0.13);
+  background: #ffeaea;
+  animation: inputFocusPulse 0.4s cubic-bezier(.4,0,.2,1);
+}
+@keyframes inputFocusPulse {
+  0% { box-shadow: 0 2px 8px rgba(199,7,16,0.04); }
+  60% { box-shadow: 0 4px 32px rgba(199,7,16,0.22); }
+  100% { box-shadow: 0 4px 16px rgba(199,7,16,0.13); }
+}

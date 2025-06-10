@@ -4,6 +4,8 @@ import Catalog from '../../shared/PosterCard/Catalog.tsx';
 import { fetchPopularMovies } from '../../../utils/requester.ts';
 import type { Movie } from "../../../types/index.ts";
 import { useLocation, useNavigate } from "react-router-dom";
+import SearchDropdown from '../../shared/SearchDropdown/SearchDropdown';
+import { useMovieSearch } from '../../../hooks/useMovieSearch';
 
 export default function MovieCatalog() {
     const location = useLocation();
@@ -16,6 +18,9 @@ export default function MovieCatalog() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [totalPages, setTotalPages] = useState(1);
+    const [search, setSearch] = useState("");
+    const [showDropdown, setShowDropdown] = useState(false);
+    const { results: searchResults } = useMovieSearch(search, "movie");
 
     useEffect(() => {
         setCurrentPage(queryPage);
@@ -61,10 +66,23 @@ export default function MovieCatalog() {
             .finally(() => setLoading(false));
     };
 
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value);
+        setShowDropdown(!!e.target.value);
+    };
+    const handleSelect = (id: number) => {
+        navigate(`/details/movie/${id}`);
+        setShowDropdown(false);
+        setSearch("");
+    };
+    const handleBlur = () => {
+        setTimeout(() => setShowDropdown(false), 100);
+    };
+
     if (loading) {
         return (
             <main className={styles["main-content"]}>
-                <p className={styles.loadingMessage}>Зареждане на филми...</p>
+                <p className={styles.loadingMessage}>Loading movies...</p>
             </main>
         );
     }
@@ -73,10 +91,10 @@ export default function MovieCatalog() {
         return (
             <main className={styles["main-content"]}>
                 <p className={styles.errorMessage}>
-                    Възникна грешка при зареждането на филми: {error}
+                    An error occurred while loading movies: {error}
                 </p>
                 <button onClick={refetch} className={styles.retryButton}>
-                    Опитай отново
+                    Try again
                 </button>
             </main>
         );
@@ -85,9 +103,9 @@ export default function MovieCatalog() {
     if (movies.length === 0) {
         return (
             <main className={styles["main-content"]}>
-                <p className={styles.noResultsMessage}>Няма намерени филми.</p>
+                <p className={styles.noResultsMessage}>No movies found.</p>
                 <button onClick={refetch} className={styles.retryButton}>
-                    Презареди
+                    Reload
                 </button>
             </main>
         );
@@ -95,6 +113,23 @@ export default function MovieCatalog() {
 
     return (
         <main className={styles["main-content"]}>
+            <div style={{ position: "relative", marginBottom: 24, display: "flex", gap: 8 }}>
+                <input
+                    type="text"
+                    value={search}
+                    onChange={handleSearchChange}
+                    placeholder="Search for a movie..."
+                    className={styles.searchInput}
+                    onBlur={handleBlur}
+                    onFocus={() => search.endsWith(" ") && setShowDropdown(true)}
+                />
+                <SearchDropdown
+                    results={searchResults.map(({ id, src, title }) => ({ id, src, title }))}
+                    onSelect={handleSelect}
+                    visible={showDropdown}
+                    onBlur={handleBlur}
+                />
+            </div>
             <Catalog
                 items={movies}
                 currentPage={currentPage}
