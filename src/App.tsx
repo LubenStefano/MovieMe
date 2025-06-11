@@ -4,6 +4,7 @@ import Main from './components/pages/Main/Main'
 import MovieCatalog from './components/pages/MovieCatalog/MovieCatalog'
 import ShowsCatalog from './components/pages/ShowsCatalog/ShowsCatalog'
 import Navbar from './components/shared/Navbar/Navbar'
+import About from './components/pages/About/About'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<MovieCatalog />} />
         <Route path="/shows" element={<ShowsCatalog />} />
-        <Route path="/about" element={<MovieCatalog />} />
+        <Route path="/about" element={<About />} />
         <Route path="/details/:type/:id" element={<Details />} />
       </Routes>
     </Router>
