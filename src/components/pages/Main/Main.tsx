@@ -1,8 +1,22 @@
 import styles from "./Main.module.css";
 import CinemaItem from "../../shared/CinemaItem/CinemaItem";
 import { MouseParallax } from "react-just-parallax";
+import Loader from "../../shared/Loader/Loader";
+import { useLoader } from "../../../hooks/useLoader";
 
 export default function Main() {
+  const showLoader = useLoader();
+  // Simulate loading for demo (replace with real loading logic if needed)
+  const loading = !showLoader;
+
+  if (loading) {
+    return (
+      <main className={styles.mainContent}>
+        <Loader />
+      </main>
+    );
+  }
+
   return (
     <>
       <div className={styles["hero-section"]}>

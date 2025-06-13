@@ -1,6 +1,10 @@
 import styles from "./About.module.css";
+import Loader from "../../shared/Loader/Loader";
+import { useLoader } from "../../../hooks/useLoader";
 
 export default function About() {
+    const showLoader = useLoader();
+    if (!showLoader) return <Loader />;
     return (
         <main className={styles.mainContent}>
             <h1 className={styles.title}>About MovieMe</h1>

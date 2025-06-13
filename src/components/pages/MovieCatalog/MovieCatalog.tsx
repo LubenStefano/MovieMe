@@ -6,6 +6,8 @@ import type { Movie } from "../../../types/index.ts";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchDropdown from '../../shared/SearchDropdown/SearchDropdown';
 import { useMovieSearch } from '../../../hooks/useMovieSearch';
+import Loader from "../../shared/Loader/Loader";
+import { useLoader } from "../../../hooks/useLoader";
 
 export default function MovieCatalog() {
     const location = useLocation();
@@ -21,6 +23,7 @@ export default function MovieCatalog() {
     const [search, setSearch] = useState("");
     const [showDropdown, setShowDropdown] = useState(false);
     const { results: searchResults } = useMovieSearch(search, "movie");
+    const showLoader = useLoader();
 
     useEffect(() => {
         setCurrentPage(queryPage);
@@ -80,9 +83,14 @@ export default function MovieCatalog() {
     };
 
     if (loading) {
+        if (!showLoader) return (
+            <main className={styles["main-content"]}>
+                <Loader />
+            </main>
+        );
         return (
             <main className={styles["main-content"]}>
-                <p className={styles.loadingMessage}>Loading movies...</p>
+                <Loader />
             </main>
         );
     }
