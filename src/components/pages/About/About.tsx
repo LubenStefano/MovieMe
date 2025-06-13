@@ -1,5 +1,4 @@
 import styles from "./About.module.css";
-import CinemaItem from "../../shared/CinemaItem/CinemaItem";
 
 export default function About() {
     return (
