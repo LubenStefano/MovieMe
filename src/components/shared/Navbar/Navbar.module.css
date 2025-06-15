@@ -6,6 +6,7 @@
   top: 0; 
   left: 0;
   z-index: 1000;
+  transition: background-color 0.3s;
 }
 
 .header-container {
@@ -83,13 +84,14 @@
 }
 
 .pages-header {
-  background-color: #00000081; 
+  background-color: #000000a2; /* much more opaque */
   width: 100%;
   padding: 20px 0px; 
   position: fixed; 
   top: 0; 
   left: 0;
   z-index: 1000;
+  transition: background-color 0.3s;
 }
 
 @keyframes line {
