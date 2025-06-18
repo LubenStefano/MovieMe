@@ -60,3 +60,30 @@
     transform: scale(1.12);
     pointer-events: none;
 }
+
+@media (max-width: 700px) {
+  .controllerContainer {
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 0 2vw;
+  }
+  .controllerButton, .pageButton {
+    font-size: 0.95em;
+    padding: 8px 10px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 500px) {
+  .controllerContainer {
+    margin: 4px 0;
+    padding: 0 1vw;
+  }
+  .controllerButton, .pageButton {
+    font-size: 0.85em;
+    padding: 6px 6px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+}

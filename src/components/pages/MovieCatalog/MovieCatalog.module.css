@@ -30,3 +30,46 @@
   60% { box-shadow: 0 4px 32px rgba(199,7,16,0.22); }
   100% { box-shadow: 0 4px 16px rgba(199,7,16,0.13); }
 }
+
+@media (max-width: 900px) {
+  .main-content {
+    padding: 12px 2vw 10px 2vw;
+    margin-top: 70px;
+  }
+  .searchInput {
+    width: 90vw !important;
+    min-width: 180px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .main-content {
+    padding: 6px 1vw 6px 1vw;
+    margin-top: 70px;
+  }
+  .searchInput {
+    width: 98vw !important;
+    min-width: 120px;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-content {
+    padding: 2px 1vw 2px 1vw;
+    margin-top: 70px;
+  }
+  .searchInput {
+    width: 99vw !important;
+    min-width: 80px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 700px) {
+  /* Hide CinemaItems and parallax on mobile */
+  .cinemaItem, .float-item {
+    display: none !important;
+  }
+}

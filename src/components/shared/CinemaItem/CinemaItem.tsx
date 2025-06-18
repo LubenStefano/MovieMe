@@ -15,7 +15,11 @@ export default function CinemaItem({
   zIndex,
   type
 }: CinemaItemProps ) {
-    
+  // Hide on phones only (max-width: 700px)
+  if (typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 700px)").matches) {
+    return null;
+  }
+
   const itemStyle: React.CSSProperties = {
     position: "absolute",
     top: `${top}%`,

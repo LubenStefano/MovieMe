@@ -32,3 +32,45 @@
   object-fit: cover;
   display: block;
 }
+
+@media (max-width: 900px) {
+  .hero-section, .hero-video {
+    height: 60vh;
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-section, .hero-video {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+  .hero-section video, .hero-video {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    object-fit: cover;
+    border-radius: 0;
+  }
+  .float-item {
+    display: none !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-section, .hero-video {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+  .hero-section video, .hero-video {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    object-fit: cover;
+    border-radius: 0;
+  }
+}

@@ -99,3 +99,53 @@
     background-position-x: 390px;
   }
 }
+
+@media (max-width: 700px) {
+  .main-header, .pages-header {
+    padding: 10px 0px;
+  }
+  .header-container {
+    padding: 0 10px;
+  }
+  .logo {
+    font-size: 26px;
+  }
+  .main-nav ul {
+    gap: 8px;
+  }
+  .main-nav ul li {
+    width: auto;
+    height: 38px;
+    font-size: 1rem;
+    padding: 0 2px;
+  }
+  .main-nav ul li a {
+    font-size: 1rem;
+    padding: 4px 6px;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-header, .pages-header {
+    padding: 6px 0px;
+  }
+  .header-container {
+    padding: 0 2vw;
+  }
+  .logo {
+    font-size: 18px;
+  }
+  .main-nav ul {
+    gap: 2px;
+  }
+  .main-nav ul li {
+    width: auto;
+    height: 28px;
+    font-size: 0.85rem;
+    padding: 0 1px;
+  }
+  .main-nav ul li a {
+    font-size: 0.85rem;
+    padding: 2px 3px;
+  }
+}
