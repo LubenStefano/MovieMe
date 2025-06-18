@@ -1,11 +1,21 @@
 # MovieMe 🍿
 
-<!--
-Add preview screenshots here!
-Example:
-![MovieMe Home](./screenshots/home.png)
-![MovieMe Details](./screenshots/details.png)
--->
+---
+
+## 🖼️ Preview
+
+
+![image](https://github.com/user-attachments/assets/5f6f51f7-f5de-4543-a177-43d6c94faaf9)
+
+
+![image](https://github.com/user-attachments/assets/76be5a67-e3af-4b1f-b45f-29b3237f8c0b)
+
+
+![image](https://github.com/user-attachments/assets/b8e53523-92c2-4cbc-a477-7c3cddbbc45c)
+
+
+![image](https://github.com/user-attachments/assets/f35d2940-47c7-4050-b9d5-a66d2cbf4b31)
+
 
 ---
 
@@ -45,14 +55,6 @@ Example:
 - CinemaItems and parallax effects are automatically hidden on phones for clarity and performance.
 - Navbar, search, and page controls adapt for touch and small screens.
 - Video backgrounds scale and fit perfectly on all devices.
-
----
-
-## 🖼️ Screenshots
-
-<!--
-Add screenshots in the /screenshots folder and link them here.
--->
 
 ---
 
@@ -104,12 +106,6 @@ MovieMe/
 - **Add new features**: Easily extend with new pages, hooks, or API endpoints.
 - **Styling**: All styles are modular and can be customized per component/page.
 - **Loader & Animations**: Swap out or enhance the loader and parallax effects as desired.
-
----
-
-## 📝 License
-
-This project is for educational and demonstration purposes. See TMDB's [terms of use](https://www.themoviedb.org/terms-of-use) for API usage.
 
 ---
 
