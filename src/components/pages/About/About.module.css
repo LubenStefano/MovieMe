@@ -1,6 +1,6 @@
 .mainContent {
     max-width: 900px;
-    margin: 100px auto 48px auto;
+    margin: 140px auto 48px auto;
     background: #fff;
     border-radius: 18px;
     box-shadow: 0 8px 32px rgba(199,7,16,0.10), 0 1.5px 8px rgba(0,0,0,0.08);
@@ -8,24 +8,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 420px;
+    /* Center visually on page */
+    position: relative;
+    z-index: 1;
 }
 .title {
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     color: #c70710;
     font-weight: bold;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
     text-shadow: 0 2px 8px rgba(199,7,16,0.08);
+    letter-spacing: 0.01em;
 }
 .infoSection {
-    font-size: 1.18rem;
+    font-size: 1.22rem;
     color: #333;
     margin-bottom: 36px;
     text-align: center;
     background: #ffeaea;
-    border-radius: 8px;
-    padding: 18px 18px 18px 18px;
+    border-radius: 10px;
+    padding: 28px 24px 24px 24px;
     box-shadow: 0 1px 8px rgba(199,7,16,0.04);
     border-left: 3px solid #c70710;
+    line-height: 1.7;
+    position: relative;
+    z-index: 3;
+}
+.link {
+    color: #c70710;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.18s;
+    z-index: 1002;
+    position: relative;
+}
+.link:hover {
+    color: #ffb300;
+}
+.credits {
+    display: block;
+    margin-top: 18px;
+    font-size: 1rem;
+    color: #888;
+    font-style: italic;
 }
 .cinemaItemsSection {
     width: 100%;
