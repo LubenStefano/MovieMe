@@ -1,56 +1,124 @@
+# MovieMe 🍿
 
-# React + TypeScript + Vite
+<!--
+Add preview screenshots here!
+Example:
+![MovieMe Home](./screenshots/home.png)
+![MovieMe Details](./screenshots/details.png)
+-->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**MovieMe** is a modern, visually engaging web app for discovering popular movies and TV shows. Built with React, TypeScript, and Vite, MovieMe offers a fast, interactive, and mobile-friendly experience. Enjoy smooth animations, creative loaders, and a playful cinema-inspired design.
 
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Browse Popular Movies & TV Shows**: Instantly explore trending and top-rated content.
+- **Search**: Find your favorite movies and shows with a fast, live search and dropdown suggestions.
+- **Details & Trailers**: View detailed info, ratings, and watch trailers for each title.
+- **Parallax Cinema Items**: Fun, animated popcorn, soda, and ticket graphics float around the UI (hidden on mobile for clarity).
+- **Creative Loader**: Custom animated loader with popcorn and dots for a delightful waiting experience.
+- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices. Cinema items and parallax effects are hidden on phones for a clean look.
+- **Modern UI**: Beautiful, accessible, and easy-to-navigate interface with smooth transitions and theming.
+- **Error Handling**: Friendly error messages and retry options for network issues.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: CSS Modules, custom animations, and parallax effects
+- **Routing**: React Router
+- **State & Context**: React Context for page state (e.g., navbar opacity)
+- **Animation**: [framer-motion](https://www.framer.com/motion/) for loaders and transitions
+- **API**: [The Movie Database (TMDB)](https://www.themoviedb.org/) for all movie and show data
+
+---
+
+## 📱 Responsiveness
+
+- All pages are fully responsive for desktop, tablet, and mobile.
+- CinemaItems and parallax effects are automatically hidden on phones for clarity and performance.
+- Navbar, search, and page controls adapt for touch and small screens.
+- Video backgrounds scale and fit perfectly on all devices.
+
+---
+
+## 🖼️ Screenshots
+
+<!--
+Add screenshots in the /screenshots folder and link them here.
+-->
+
+---
+
+## 🚀 Getting Started
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+3. **Open your browser:**
+   Visit [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal).
+
+---
+
+## 🔗 API & Credits
+
+- This product uses the TMDB API but is not endorsed or certified by TMDB.
+- All movie and show data, posters, and trailers are fetched live from [The Movie Database (TMDB)](https://www.themoviedb.org/).
+
+---
+
+## 📂 Project Structure
+
+```
+MovieMe/
+├── public/                # Static assets (video, images)
+├── src/
+│   ├── assets/            # Images for cinema items
+│   ├── components/
+│   │   ├── pages/         # Main, About, Details, MovieCatalog, ShowsCatalog
+│   │   └── shared/        # Navbar, Loader, CinemaItem, PageController, etc.
+│   ├── context/           # React context for page state
+│   ├── hooks/             # Custom hooks (e.g., useLoader, useMovies)
+│   ├── types/             # TypeScript types
+│   └── utils/             # API requester and helpers
+├── README.md
+├── package.json
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧩 Customization & Extending
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **Add new features**: Easily extend with new pages, hooks, or API endpoints.
+- **Styling**: All styles are modular and can be customized per component/page.
+- **Loader & Animations**: Swap out or enhance the loader and parallax effects as desired.
+
+---
+
+## 📝 License
+
+This project is for educational and demonstration purposes. See TMDB's [terms of use](https://www.themoviedb.org/terms-of-use) for API usage.
+
+---
+
+## 🙏 Acknowledgements
+
+- [TMDB](https://www.themoviedb.org/) for the amazing free movie & TV data API.
+- [Framer Motion](https://www.framer.com/motion/) for beautiful React animations.
+- [Vite](https://vitejs.dev/) for fast, modern development tooling.
+
+---
+
+Enjoy MovieMe! 🍿
